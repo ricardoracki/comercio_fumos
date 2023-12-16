@@ -1,8 +1,9 @@
 {
   "expo": {
-    "name": "fumo",
+    "name": "Comércio de fumos",
     "slug": "fumo",
-    "version": "1.0.0",
+    "scheme": "fumo",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -11,9 +12,7 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
     },
@@ -21,10 +20,26 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.ricardo_racki.RackiFumos"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "experiments": {
+      "typedRoutes": true
+    },
+    "plugins": ["expo-router"],
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "da9ad7c3-c84b-461a-aa02-0a72f646e5e5"
+      }
     }
+  },
+  "eas": {
+    "projectId": "ecc7ac97-272e-429a-9a13-e2167d7b5fa5"
   }
 }
