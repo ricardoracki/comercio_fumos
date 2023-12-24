@@ -10,6 +10,7 @@ import { Shopping } from "../../lib/database/entity";
 export default function Test() {
   const [customer, setCustomer] = useState("");
   const [value, setValue] = useState("");
+  const [maskedValue, setMaskedValue] = useState("");
   const [weight, setWeight] = useState("");
   const [weigthType, setWeightType] = useState("kg");
   const [classification, setClassification] = useState("thick");
@@ -21,10 +22,13 @@ export default function Test() {
       return Alert.alert("Atenção", "Preencha todos os campos");
 
     const data = new Shopping();
-    data.amountInKg =
-      weigthType == "@" ? convertArrobaInKg(Number(weight)) : Number(weight);
+
+    const _weight = Number(weight.replace(",", "."));
+    const _value = value.endsWith("00") ? Number(value) / 100 : Number(value);
+
+    data.amountInKg = weigthType == "@" ? convertArrobaInKg(_weight) : _weight;
     data.customer = customer;
-    data.value = Number(value.replace(",", "."));
+    data.value = _value;
     data.classification = classification;
 
     const { id } = await dataSource.manager.save(data);
@@ -44,11 +48,16 @@ export default function Test() {
             placeholder: "Ex: Fulano",
           },
           {
-            onChangeText: setValue,
-            value: value,
+            //@ts-ignore
+            onChangeText: (masked, unmasked) => {
+              setMaskedValue(masked);
+              setValue(unmasked);
+            },
+            value: maskedValue,
             label: "Valor",
             placeholder: "R$0.00",
-            keyboardType: "decimal-pad",
+            keyboardType: "numeric",
+            type: "masked",
           },
           {
             onChangeText: setWeight,

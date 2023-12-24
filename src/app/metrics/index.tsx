@@ -139,7 +139,10 @@ export default function Shoppings() {
                   <Text className="font-semibold">
                     {`${state.fines
                       .map((a) => a.amountInKg)
-                      .reduce((v, a) => (a += v))}kg`}
+                      .reduce((v, a) => (a += v))
+                      .toLocaleString("pt-BR", {
+                        maximumFractionDigits: 2,
+                      })}kg`}
                   </Text>
                   <Text className="font-semibold">-</Text>
                   <Text className="font-semibold">
@@ -151,30 +154,39 @@ export default function Shoppings() {
 
                 <View className="flex-row items-center gap-x-3">
                   <Text>Valor investido:</Text>
-                  <Text className="font-semibold">{`R$${state.fines
+                  <Text className="font-semibold">{`${state.fines
                     .map((a) => a.value)
                     .reduce((v, a) => (a += v))
-                    .toFixed(2)}`}</Text>
+                    .toLocaleString("pt-br", {
+                      style: "currency",
+                      currency: "BRL",
+                    })}`}</Text>
                 </View>
 
                 <View className="flex-row items-center gap-x-3">
                   <Text>Preço médio (kg):</Text>
-                  <Text className="font-semibold">{`R$${(
+                  <Text className="font-semibold">{`${(
                     state.fines.map((a) => a.value).reduce((v, a) => (a += v)) /
                     state.fines
                       .map((a) => a.amountInKg)
                       .reduce((v, a) => (a += v))
-                  ).toFixed(2)}`}</Text>
+                  ).toLocaleString("pt-br", {
+                    style: "currency",
+                    currency: "BRL",
+                  })}`}</Text>
                 </View>
 
                 <View className="flex-row items-center gap-x-3">
                   <Text>Preço médio (@):</Text>
-                  <Text className="font-semibold">{`R$${(
+                  <Text className="font-semibold">{`${(
                     state.fines.map((a) => a.value).reduce((v, a) => (a += v)) /
                     state.fines
                       .map((a) => convertKgInArroba(a.amountInKg))
                       .reduce((v, a) => (a += v))
-                  ).toFixed(2)}`}</Text>
+                  ).toLocaleString("pt-br", {
+                    style: "currency",
+                    currency: "BRL",
+                  })}`}</Text>
                 </View>
               </View>
             )}
@@ -196,46 +208,62 @@ export default function Shoppings() {
                   <Text className="font-semibold">
                     {`${state.thicks
                       .map((a) => a.amountInKg)
-                      .reduce((v, a) => (a += v))}kg`}
+                      .reduce((v, a) => (a += v))
+                      .toLocaleString("pt-BR", {
+                        maximumFractionDigits: 2,
+                      })}kg`}
                   </Text>
                   <Text className="font-semibold">-</Text>
                   <Text className="font-semibold">
-                    {`${state.thicks
-                      .map((a) => convertKgInArroba(a.amountInKg))
-                      .reduce((v, a) => (a += v))}@`}
+                    {`${Number(
+                      state.thicks
+                        .map((a) => convertKgInArroba(a.amountInKg))
+                        .reduce((v, a) => (a += v)),
+                    ).toLocaleString("pt-BR", {
+                      maximumFractionDigits: 2,
+                    })}@`}
                   </Text>
                 </View>
 
                 <View className="flex-row items-center gap-x-3">
                   <Text>Valor investido:</Text>
-                  <Text className="font-semibold">{`R$${state.thicks
+                  <Text className="font-semibold">{`${state.thicks
                     .map((a) => a.value)
                     .reduce((v, a) => (a += v))
-                    .toFixed(2)}`}</Text>
+                    .toLocaleString("pt-br", {
+                      style: "currency",
+                      currency: "BRL",
+                    })}`}</Text>
                 </View>
 
                 <View className="flex-row items-center gap-x-3">
                   <Text>Preço médio (kg):</Text>
-                  <Text className="font-semibold">{`R$${(
+                  <Text className="font-semibold">{`${(
                     state.thicks
                       .map((a) => a.value)
                       .reduce((v, a) => (a += v)) /
                     state.thicks
                       .map((a) => a.amountInKg)
                       .reduce((v, a) => (a += v))
-                  ).toFixed(2)}`}</Text>
+                  ).toLocaleString("pt-br", {
+                    style: "currency",
+                    currency: "BRL",
+                  })}`}</Text>
                 </View>
 
                 <View className="flex-row items-center gap-x-3">
                   <Text>Preço médio (@):</Text>
-                  <Text className="font-semibold">{`R$${(
+                  <Text className="font-semibold">{`${(
                     state.thicks
                       .map((a) => a.value)
                       .reduce((v, a) => (a += v)) /
                     state.thicks
                       .map((a) => convertKgInArroba(a.amountInKg))
                       .reduce((v, a) => (a += v))
-                  ).toFixed(2)}`}</Text>
+                  ).toLocaleString("pt-br", {
+                    style: "currency",
+                    currency: "BRL",
+                  })}`}</Text>
                 </View>
               </View>
             )}
@@ -256,46 +284,61 @@ export default function Shoppings() {
                 <Text className="font-semibold">
                   {`${state.shopping
                     .map((a) => a.amountInKg)
-                    .reduce((v, a) => (a += v))}kg`}
+                    .reduce((v, a) => (a += v))
+                    .toLocaleString("pt-BR", {
+                      maximumFractionDigits: 2,
+                    })}kg`}
                 </Text>
                 <Text className="font-semibold">-</Text>
                 <Text className="font-semibold">
                   {`${state.shopping
                     .map((a) => convertKgInArroba(a.amountInKg))
-                    .reduce((v, a) => (a += v))}@`}
+                    .reduce((v, a) => (a += v))
+                    .toLocaleString("pt-BR", {
+                      maximumFractionDigits: 2,
+                    })}@`}
                 </Text>
               </View>
 
               <View className="flex-row items-center gap-x-3">
                 <Text>Valor investido:</Text>
-                <Text className="font-semibold">{`R$${state.shopping
+                <Text className="font-semibold">{`${state.shopping
                   .map((a) => a.value)
                   .reduce((v, a) => (a += v))
-                  .toFixed(2)}`}</Text>
+                  .toLocaleString("pt-br", {
+                    style: "currency",
+                    currency: "BRL",
+                  })}`}</Text>
               </View>
 
               <View className="flex-row items-center gap-x-3">
                 <Text>Preço médio geral (kg):</Text>
-                <Text className="font-semibold">{`R$${(
+                <Text className="font-semibold">{`${(
                   state.shopping
                     .map((a) => a.value)
                     .reduce((v, a) => (a += v)) /
                   state.shopping
                     .map((a) => a.amountInKg)
                     .reduce((v, a) => (v += a))
-                ).toFixed(2)}`}</Text>
+                ).toLocaleString("pt-br", {
+                  style: "currency",
+                  currency: "BRL",
+                })}`}</Text>
               </View>
 
               <View className="flex-row items-center gap-x-3">
                 <Text>Preço médio geral (@):</Text>
-                <Text className="font-semibold">{`R$${(
+                <Text className="font-semibold">{`${(
                   state.shopping
                     .map((a) => a.value)
                     .reduce((v, a) => (a += v)) /
                   state.shopping
                     .map((a) => convertKgInArroba(a.amountInKg))
                     .reduce((v, a) => (v += a))
-                ).toFixed(2)}`}</Text>
+                ).toLocaleString("pt-br", {
+                  style: "currency",
+                  currency: "BRL",
+                })}`}</Text>
               </View>
             </View>
           </ScrollView>

@@ -9,6 +9,7 @@ import { dataSource } from "../../lib/database";
 
 export default function NewSale() {
   const [value, setValue] = useState("");
+  const [maskedValue, setMaskedValue] = useState("");
   const [weight, setWeight] = useState("");
   const [weightType, setWeightType] = useState("kg");
 
@@ -21,7 +22,7 @@ export default function NewSale() {
     const data = new Sale();
     data.amountInKg =
       weightType == "@" ? convertArrobaInKg(Number(weight)) : Number(weight);
-    data.value = Number(value.replace(",", "."));
+    data.value = value.endsWith("00") ? Number(value) / 100 : Number(value);
     const { id } = await dataSource.manager.save(data);
     Alert.alert("Sucesso", "Venda registrada", [
       {
@@ -36,8 +37,13 @@ export default function NewSale() {
       <Form
         fields={[
           {
-            onChangeText: setValue,
-            value: value,
+            type: "masked",
+            //@ts-ignore
+            onChangeText: (masked, unMasked) => {
+              setMaskedValue(masked);
+              setValue(unMasked);
+            },
+            value: maskedValue,
             label: "Valor",
             placeholder: "R$0.00",
             keyboardType: "decimal-pad",

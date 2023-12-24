@@ -98,11 +98,21 @@ export default function Home() {
           <TouchableNativeFeedback onPress={() => alert(item)}>
             <View className="rounded border-b border-gray-300 p-3">
               <Text className="text-lg font-bold">
-                R${item.value.toFixed(2)} - Fumo{" "}
-                {item.classification == "fine" ? "fino" : "grosso"}
+                {item.value.toLocaleString("pt-br", {
+                  style: "currency",
+                  currency: "BRL",
+                })}{" "}
+                - Fumo {item.classification == "fine" ? "fino" : "grosso"}
               </Text>
               <Text className="text-base font-semibold">
-                {item.amountInKg}kg - {convertKgInArroba(item.amountInKg)}@
+                {item.amountInKg.toLocaleString("pt-BR", {
+                  maximumFractionDigits: 2,
+                })}
+                kg -{" "}
+                {convertKgInArroba(item.amountInKg).toLocaleString("pt-BR", {
+                  maximumFractionDigits: 2,
+                })}
+                @
               </Text>
 
               <Text className="">

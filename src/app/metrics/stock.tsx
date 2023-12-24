@@ -112,10 +112,19 @@ export default function Stock() {
             </Text>
             <View className="flex-row items-center gap-x-3">
               <Text>Fumo em estoque:</Text>
-              <Text className=" font-semibold">{state.amountIsStock}kg</Text>
+              <Text className=" font-semibold">
+                {state.amountIsStock.toLocaleString("pt-BR", {
+                  maximumFractionDigits: 2,
+                })}
+                kg
+              </Text>
               <Text>-</Text>
               <Text className=" font-semibold">
-                {convertKgInArroba(state.amountIsStock)}@
+                {convertKgInArroba(state.amountIsStock).toLocaleString(
+                  "pt-BR",
+                  { maximumFractionDigits: 2 },
+                )}
+                @
               </Text>
             </View>
           </View>

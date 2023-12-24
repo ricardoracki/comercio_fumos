@@ -112,20 +112,34 @@ export default function Sales() {
 
                 <View className="flex-row items-center gap-x-3">
                   <Text>Valor:</Text>
-                  <Text className=" font-semibold">R${s.value.toFixed(2)}</Text>
+                  <Text className=" font-semibold">
+                    {s.value.toLocaleString("pt-br", {
+                      style: "currency",
+                      currency: "BRL",
+                    })}
+                  </Text>
                 </View>
 
                 <View className="flex-row items-center gap-x-3">
                   <Text>Valor médio (kg):</Text>
                   <Text className=" font-semibold">
-                    R${(s.value / s.amountInKg).toFixed(2)}
+                    {(s.value / s.amountInKg).toLocaleString("pt-br", {
+                      style: "currency",
+                      currency: "BRL",
+                    })}
                   </Text>
                 </View>
 
                 <View className="flex-row items-center gap-x-3">
                   <Text>Valor médio (@):</Text>
                   <Text className=" font-semibold">
-                    R${(s.value / convertKgInArroba(s.amountInKg)).toFixed(2)}
+                    {(s.value / convertKgInArroba(s.amountInKg)).toLocaleString(
+                      "pt-br",
+                      {
+                        style: "currency",
+                        currency: "BRL",
+                      },
+                    )}
                   </Text>
                 </View>
               </View>

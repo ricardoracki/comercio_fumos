@@ -8,10 +8,11 @@ import {
 } from "react-native";
 import colors from "tailwindcss/colors";
 
+import MaskInput, { Masks } from "react-native-mask-input";
+
 type FieldProps = TextInputProps & {
   label?: string;
-  // onChange: React.Dispatch<React.SetStateAction<string>>;
-  type?: "input" | "radio";
+  type?: "input" | "radio" | "masked";
   choices?: string[] | { label: string; value: string }[];
 };
 
@@ -54,6 +55,21 @@ export const Form = ({ fields }: FormProps) => {
                 ))}
             </View>
           );
+
+        if (type == "masked") {
+          return (
+            <View key={`${i}`}>
+              <Text className="mb-1 text-sm font-semibold">{label}</Text>
+
+              <MaskInput
+                className="rounded border border-gray-300 p-6"
+                placeholderTextColor={colors.gray[500]}
+                {...rest}
+                mask={Masks.BRL_CURRENCY}
+              />
+            </View>
+          );
+        }
         return (
           <View key={`${i}`}>
             <Text className="mb-1 text-sm font-semibold">{label}</Text>
