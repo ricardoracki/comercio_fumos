@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import { Stack, useRouter } from "expo-router";
+import { Stack } from "expo-router";
 
 import { AddButton } from "../components/home/header/add-button";
 import { MetricsButton } from "../components/home/header/metrics-button";

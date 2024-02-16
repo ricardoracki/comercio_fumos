@@ -30,6 +30,7 @@ export default function Test() {
     data.customer = customer;
     data.value = _value;
     data.classification = classification;
+    data.saveFormat = weigthType;
 
     const { id } = await dataSource.manager.save(data);
     Alert.alert("Sucesso", "Compra registrada", [

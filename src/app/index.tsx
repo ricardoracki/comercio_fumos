@@ -23,7 +23,7 @@ export default function Home() {
 
   async function load() {
     const shopRepo = dataSource.getRepository(Shopping);
-    const _data = await shopRepo.find();
+    const _data = await shopRepo.find({ order: { createdAt: "DESC" } });
     setData(_data);
   }
 
